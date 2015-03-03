@@ -1,0 +1,56 @@
+<div>
+    <h2>Lista de Cliente</h2>
+</div>
+<hr>
+<p>
+    <a class="btn btn-success" href="<?php //echo $this->url('cliente/default-pages', array('controller'=>'cliente-controller-index','action'=>'new')); ?>">Novo Registro</a>
+</p>
+<hr/>
+<br>
+<?php 
+//    $form = $this->form;
+//    
+//    $form->setAttribute('action',$this->url('cliente/default-pages', array('controller'=>'cliente-controller-index','action'=>'index')));
+//    
+//    $form->prepare();
+//    echo $this->form()->openTag($form);
+//    echo $this->formRow($form->get('nome'));
+//    echo $this->formSubmit($form->get('submit'));
+//    echo $this->form()->closeTag();
+?>
+<hr/>
+<br>
+<table class="table table-striped table-hover">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Tel. Residencial</th>
+        <th>Tel. Comercial</th>
+        <th>Celular</th>
+        <th>Celular</th>
+        <th>Ação</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <?php foreach ($this->dados as $data): ?>
+        <tr>
+            <td><?php echo $data->getIdclientes(); ?></td>
+            <td><?php echo $data->getNome(); ?></td>
+            <td><?php echo $data->getTelefoner(); ?></td>
+            <td><?php echo $data->getTelefonec(); ?></td>
+            <td><?php echo $data->getCelular1(); ?></td>
+            <td><?php echo $data->getCelular2(); ?></td>
+            <td>
+                <a class="btn btn-success fa fa-edit" href="<?php //echo $this->url('cliente/interna-pages', array('controller'=>'cliente-controller-index','action'=>'edit','id'=>''.$data->getId())); ?>"></a>
+                <a class="btn btn-success fa fa-trash" href="<?php //echo $this->url('cliente/interna-pages', array('controller'=>'cliente-controller-index','action'=>'delete','id'=>$data->getId())); ?>"></a>
+
+            </td>
+        </tr>
+    <?php endforeach; ?>
+    </tbody>
+</table>
+<br />
+
+<?php echo $this->paginationControl($this->dados,'Sliding','paginator', array('route'=>'cliente/default'));?>
