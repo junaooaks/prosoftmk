@@ -3,6 +3,7 @@ namespace Cliente;
 
 use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
+use Cliente\Service\ClienteService as ClienteService;
 
 class Module
 {
@@ -26,6 +27,15 @@ class Module
                     __NAMESPACE__ => __DIR__ . '/src/' . __NAMESPACE__,
                 ),
             ),
+        );
+    }
+    public function getServiceConfig() {
+        return array(
+            'factories' => array(
+                'Cliente\Service\ClienteService' => function($service) {
+                    return new ClienteService($service->get('Doctrine\ORM\EntityManager'));
+                }
+            )
         );
     }
 }

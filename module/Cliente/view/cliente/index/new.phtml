@@ -1,0 +1,54 @@
+<h2>Cadastro de Cliente</h2>
+<hr/>
+<p>
+    <a class="btn btn-success" href="<?php echo $this->url('cliente/default', array('controller'=>'Cliente\Controller\Index')); ?>"><i class="fa fa-hand-o-left"> Voltar</i></a>
+</p>
+<hr/>
+
+<?php
+$form = $this->form;
+
+$form->setAttribute('action', $this->url('cliente/default', array('controller' => 'Cliente\Controller\Index', 'action' => 'new')));
+
+$form->prepare();
+echo $this->form()->openTag($form);
+echo "<ul>                      
+	<li>";
+//echo $this->formHidden($form->get('id'));
+echo $this->formRow($form->get('nome'));
+echo $this->formRow($form->get('cpfCnpj'));
+echo "</li>";
+
+echo "<li>";
+echo $this->formRow($form->get('email'));
+echo "</li>";
+
+echo "<li>";
+echo $this->formRow($form->get('rg'));
+echo $this->formRow($form->get('ie'));
+echo "</li>";
+
+echo "<li>";
+echo $this->formRow($form->get('telefoneR'));
+echo $this->formRow($form->get('telefoneC'));
+echo "</li>";
+
+echo "<li>";
+echo $this->formRow($form->get('celular1'));
+echo $this->formRow($form->get('celular2'));
+echo "</li>";
+
+echo "<li>";
+echo $this->formRow($form->get('datanascimento'));
+echo $this->formRow($form->get('estadoCivil'));
+echo "</li>";
+
+echo "<li>";
+echo $this->formRow($form->get('observacao'));
+echo "</li>";
+
+echo "<li>";
+echo $this->formSubmit($form->get('submit'));
+echo "</li></ul>";
+echo $this->form()->closeTag();
+?>

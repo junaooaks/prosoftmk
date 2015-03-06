@@ -3,22 +3,19 @@ namespace Cliente\Entity;
 
 
 use Doctrine\ORM\Mapping as ORM;
-use Zend\Stdlib\Hydrator\ClassMethods;
+use Zend\Stdlib\Hydrator;
 
 //
-
+//* @ORM\Table(name="cliente", indexes={@ORM\Index(name="fk_clientes_permissaoSistemica1", columns={"permissaoSistemica_idpermissaoSistemica"})})
+ 
 /**
  * Cliente
- * @ORM\Table(name="cliente", indexes={@ORM\Index(name="fk_clientes_permissaoSistemica1", columns={"permissaoSistemica_idpermissaoSistemica"})})
+ * @ORM\Table(name="cliente")
  * @ORM\Entity
  * @ORM\Entity(repositoryClass="Cliente\Entity\ClienteRepository")
  */
 class Cliente
 {
-    public function __construct($options = null) {
-        (new ClassMethods())->hydrate($options, $this);
-        
-    }
     
     /**
      * @var integer
@@ -113,20 +110,7 @@ class Cliente
      */
     private $observacao;
 
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="dataCadastro", type="datetime", nullable=true)
-     */
-    private $datacadastro;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="dataUpdate", type="datetime", nullable=true)
-     */
-    private $dataupdate;
-
+       
     /*
      * @var \Permissaosistemica
      *
@@ -135,7 +119,13 @@ class Cliente
      *   @ORM\JoinColumn(name="permissaoSistemica_idpermissaoSistemica", referencedColumnName="idpermissaoSistemica")
      * })
      */
-    private $permissaosistemicapermissaosistemica;
+//    private $permissaosistemicapermissaosistemica;
+    
+    public function __construct($options = array()) {
+        
+        (new Hydrator\ClassMethods)->hydrate($options, $this);
+        
+    }
     
     function getIdclientes() {
         return $this->idclientes;
@@ -197,9 +187,9 @@ class Cliente
         return $this->dataupdate;
     }
 
-    function getPermissaosistemicapermissaosistemica() {
-        return $this->permissaosistemicapermissaosistemica;
-    }
+//    function getPermissaosistemicapermissaosistemica() {
+//        return $this->permissaosistemicapermissaosistemica;
+//    }
 
     function setIdclientes($idclientes) {
         $this->idclientes = $idclientes;
@@ -250,9 +240,12 @@ class Cliente
         $this->email = $email;
         return $this;
     }
-
-    function setDatanascimento(\DateTime $datanascimento) {
-        $this->datanascimento = $datanascimento;
+    
+    /**
+     * @ORM\PrePersist
+     */
+    function setDatanascimento($datanascimento) {
+        $this->datanascimento = new \DateTime($datanascimento);
         return $this;
     }
 
@@ -268,9 +261,9 @@ class Cliente
 
     
 
-    function setPermissaosistemicapermissaosistemica(\Permissaosistemica $permissaosistemicapermissaosistemica) {
-        $this->permissaosistemicapermissaosistemica = $permissaosistemicapermissaosistemica;
-    }
+//    function setPermissaosistemicapermissaosistemica(\Permissaosistemica $permissaosistemicapermissaosistemica) {
+//        $this->permissaosistemicapermissaosistemica = $permissaosistemicapermissaosistemica;
+//    }
 
 
 

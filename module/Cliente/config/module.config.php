@@ -20,7 +20,7 @@ return array(
                     'default' => array(
                         'type' => 'Segment',
                         'options' => array(
-                            'route' => '/cliente[/:action][/:id][/page/:page]',
+                            'route' => '[/:action][/:id][/page/:page]',
                             'constraints' => array(
                                 'action' => '(?!\bpage\b)[a-zA-Z][a-zA-Z0-9_-]*',
                                 'id' => '[0-9]+',

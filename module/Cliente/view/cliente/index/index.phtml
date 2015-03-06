@@ -3,20 +3,20 @@
 </div>
 <hr>
 <p>
-    <a class="btn btn-success" href="<?php //echo $this->url('cliente/default-pages', array('controller'=>'cliente-controller-index','action'=>'new')); ?>">Novo Registro</a>
+    <a class="btn btn-success" href="<?php echo $this->url('cliente/default', array('controller'=>'Cliente\Controller\Index','action'=>'new')); ?>">Novo Registro</a>
 </p>
 <hr/>
 <br>
 <?php 
-//    $form = $this->form;
-//    
-//    $form->setAttribute('action',$this->url('cliente/default-pages', array('controller'=>'cliente-controller-index','action'=>'index')));
-//    
-//    $form->prepare();
-//    echo $this->form()->openTag($form);
-//    echo $this->formRow($form->get('nome'));
-//    echo $this->formSubmit($form->get('submit'));
-//    echo $this->form()->closeTag();
+    $form = $this->form;
+    
+    $form->setAttribute('action',$this->url('cliente/default', array('controller'=>'Cliente\Controller\Index','action'=>'index')));
+    
+    $form->prepare();
+    echo $this->form()->openTag($form);
+    echo $this->formRow($form->get('nome'));
+    echo $this->formSubmit($form->get('submit'));
+    echo $this->form()->closeTag();
 ?>
 <hr/>
 <br>

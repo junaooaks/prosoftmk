@@ -1,0 +1,90 @@
+#formulario {     
+margin:20px;     
+padding:10px 0 20px 10px;     
+width:750px;     
+background:#fff;    
+border:1px solid #dcdcdc;     
+border-radius:10px;
+}
+
+#formulario ul li {    
+margin:0px 0;     
+list-style:none;     
+position:relative;     
+clear:both; 
+}
+   
+#formulario label { 
+width: 310px; 
+margin:3px 0;     
+line-height:20px;     
+text-align:left;     
+float:left;     
+color:#666;
+font-family: Verdana, Arial, Tahoma;
+font-size:10px; 
+}   
+
+/* CAMPOS NOMES */
+.campos00 { 
+float:right;
+font-variant: small-caps;
+text-transform: uppercase;
+padding:5px;     
+border:1px solid #CCCCCC;     
+background:#fcfcfc;     
+border-radius:5px;     
+color:#000000;
+font-family: Verdana, Arial, Tahoma;
+font-size:10px;
+width:250px; 
+}
+
+/* CAMPOS GRANDES */
+.campos01 {
+font-variant: small-caps;
+text-transform: uppercase;
+padding:5px;     
+border:1px solid #CCCCCC;     
+background:#fcfcfc;     
+border-radius:5px;     
+color:#000000;
+font-family: Verdana, Arial, Tahoma;
+font-size:10px;
+width:620px; 
+}
+/* LINHAS COM DOIS INPUTS */
+.campos02 {
+float:right;
+font-variant: small-caps;
+text-transform: uppercase;
+padding:5px;     
+border:1px solid #CCCCCC;     
+background:#fcfcfc;     
+border-radius:5px;     
+font-family: Verdana, Arial, Tahoma;
+font-size:10px; 
+width:200px;
+}
+
+.campos03 {
+font-variant: small-caps;
+text-transform: uppercase;
+border:1px solid #CCCCCC;     
+background:#fcfcfc;     
+border-radius:5px;     
+color:#000000;
+font-family: Verdana, Arial, Tahoma;
+font-size:10px;
+width:620px; 
+}
+
+#formulario input#enviar {     
+width:100px;     
+height:40px;     
+margin:5px 0 0 200px;     
+cursor:pointer;     
+font-size:16px;     
+border:1px solid #ccc;     
+border-radius:5px; 
+}
