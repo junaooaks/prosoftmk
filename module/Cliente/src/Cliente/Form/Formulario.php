@@ -7,12 +7,13 @@ use Zend\Form\Element;
 
 class Formulario extends Form {
 
-    public function __construct($name = null) {
-        parent::__construct('formulario');
-
+    public function __construct($name = null, $options = array()) {
+        parent::__construct('formulario', $options);
+        
         $this->setAttribute('class', 'form-horizontal', 'method', 'post', 'id','formulario');
+        
         //inserir a class de filtrar formulario
-        //$this->setInputFilter(new FormularioFilter);
+        $this->setInputFilter(new FormularioFilter());
 
         $this->add(array(
             'name' => 'id',
@@ -25,7 +26,6 @@ class Formulario extends Form {
         $nome = new Element\Text('nome');
         $nome->setLabel('Nome: ')
                 ->setAttributes(array(
-                    'required' => 'true',
                     'class' => 'campos00',
                     
         ));

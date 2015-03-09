@@ -1,12 +1,16 @@
 {
     "name": "ProSoft-MK",
     "description": "Sistema Gerenciamento Provedor Mikrotik com regulamento Anatel",
-    "Author":"Udismar Oaks Júnior",
     "license": "BSD-3-Clause",
     "keywords": [
         "framework",
         "zf2"
     ],
+    "version":"0.0.1",
+    "Author":[{
+            "nome":"Udismar Oaks Júnior",
+            "email":"junaooaks@gmail.com"
+            }],
     "homepage": "http://framework.zend.com/",
     "require": {
         "php": ">=5.3.3",
