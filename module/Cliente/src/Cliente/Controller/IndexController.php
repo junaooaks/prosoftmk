@@ -1,16 +1,18 @@
 <?php
+
 namespace Cliente\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel,
     Zend\Paginator\Paginator,
     Zend\Paginator\Adapter\ArrayAdapter;
-
 use Cliente\Form\Formulario as FrmFormulario,
-    Cliente\Form\Pesquisa as FrmPesquisa;
+    Cliente\Form\Pesquisa as FrmPesquisa,
+    Cliente\Validator\Cnpj,
+    Cliente\Validator\Cpf;
 
-class IndexController extends AbstractActionController
-{
+class IndexController extends AbstractActionController {
+
     public function indexAction() {
 
         /*         * ******inserir formulario de pesquisa* */
@@ -33,7 +35,6 @@ class IndexController extends AbstractActionController
                 $dados = $this->getEm()
                         ->getRepository('Cliente\Entity\Cliente')
                         ->pesquisa($form->getData()['nome']);
-
             }
         } else {
 
@@ -47,17 +48,17 @@ class IndexController extends AbstractActionController
         }
         //pegar o parametro da rota da pagina
         $page = $this->params()->fromRoute('page');
-        
+
         //criar uma paginação
         $paginator = new Paginator(new ArrayAdapter($dados));
         $paginator->setCurrentPageNumber($page);
         $paginator->setDefaultItemCountPerPage(10);
 
-        return new ViewModel(array('form' => $form , 'dados' => $paginator, 'page' => $page));
+        return new ViewModel(array('form' => $form, 'dados' => $paginator, 'page' => $page));
     }
-    
+
     public function newAction() {
-        
+
         $form = new FrmFormulario();
 
         //pegar o request do post
@@ -65,17 +66,51 @@ class IndexController extends AbstractActionController
 
         //verificar se foi realizado o request
         if ($request->isPost()) {
-            
+
             //preencher os dados do formulario
             $form->setData($request->getPost());
 
+
+
             //verificar se o formulario esta valido
             if ($form->isValid()) {
-            
+
+                $cpfCnpj = ($form->getData()['cpfCnpj']);
+
+                //limpar caracteres
+                $cpfCnpj = str_replace('.', '', $cpfCnpj);
+                $cpfCnpj = str_replace('/', '', $cpfCnpj);
+                $cpfCnpj = str_replace('-', '', $cpfCnpj);
+
+                $j = 0;
+
+                for ($i = 0; $i < (strlen($cpfCnpj)); $i++) {
+                    if (is_numeric($cpfCnpj[$i])) {
+                        $num[$j] = $cpfCnpj[$i];
+                        $j++;
+                    }
+                }
+
+                if (count($num) == 14) {
+                    //validar cnpj
+                    $validator = new Cnpj();
+                    $isValid = $validator->isValid($num);
+                } 
+                if (count($num) == 11) {
+                    //validar cpf
+                    $validator = new Cpf();
+                    $isValid = $validator->isValid($num);
+                }
+
+                //inserir o cpfCnpj no array
+                $form->getData()['cpfCnpj']= $cpfCnpj;
+
+                print_r($form->getData());
+                die();
                 
                 //executar a insert
                 $service = $this->getServiceLocator()->get('Cliente\Service\ClienteService');
-                $service->insert($request->getPost()->toArray());
+                $service->insert($form->getData());
 
 
                 //retirecionar para a pagina de listar
@@ -86,4 +121,5 @@ class IndexController extends AbstractActionController
         //exibi o formulario na view
         return new ViewModel(array('form' => $form));
     }
+
 }

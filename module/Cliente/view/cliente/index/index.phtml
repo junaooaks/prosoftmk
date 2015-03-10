@@ -7,6 +7,7 @@
 </p>
 <hr/>
 <br>
+
 <?php 
     $form = $this->form;
     
@@ -14,8 +15,11 @@
     
     $form->prepare();
     echo $this->form()->openTag($form);
+    echo "<div class='input-append'>";
     echo $this->formRow($form->get('nome'));
     echo $this->formSubmit($form->get('submit'));
+    echo "</div>";
+    
     echo $this->form()->closeTag();
 ?>
 <hr/>
@@ -43,8 +47,8 @@
             <td><?php echo $data->getCelular1(); ?></td>
             <td><?php echo $data->getCelular2(); ?></td>
             <td>
-                <a class="btn btn-success fa fa-edit" href="<?php //echo $this->url('cliente/interna-pages', array('controller'=>'cliente-controller-index','action'=>'edit','id'=>''.$data->getId())); ?>"></a>
-                <a class="btn btn-success fa fa-trash" href="<?php //echo $this->url('cliente/interna-pages', array('controller'=>'cliente-controller-index','action'=>'delete','id'=>$data->getId())); ?>"></a>
+                <a class="btn btn-success fa fa-edit" href="<?php echo $this->url('cliente/default', array('controller'=>'Cliente\Controller\Index','action'=>'edit','id'=>''.$data->getIdclientes())); ?>"></a>
+                <a class="btn btn-success fa fa-trash" href="<?php echo $this->url('cliente/default', array('controller'=>'Cliente\Controller\Index','action'=>'delete','id'=>$data->getIdclientes())); ?>"></a>
 
             </td>
         </tr>

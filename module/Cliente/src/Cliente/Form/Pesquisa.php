@@ -9,7 +9,7 @@ class Pesquisa extends Form {
     public function __construct($name = null) {
         parent::__construct('Pesquisa');
         
-        $this->setAttribute('method', 'post');
+        $this->setAttribute('class','form-search','method', 'post' );
         
         $this->add(array(
             'name'=>'nome',
@@ -19,7 +19,8 @@ class Pesquisa extends Form {
             ),
             'attributes'=>array(
                 'id'=>'nome',
-                'placeholder'=>'Pesquisa Nome Cliente'
+                'placeholder'=>'Pesquisa Nome Cliente',
+                'class' => 'campos01',
             )
         ));
         

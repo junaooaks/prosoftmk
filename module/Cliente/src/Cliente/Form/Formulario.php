@@ -26,6 +26,7 @@ class Formulario extends Form {
         $nome = new Element\Text('nome');
         $nome->setLabel('Nome: ')
                 ->setAttributes(array(
+                    'required' => 'true',
                     'class' => 'campos00',
                     
         ));
