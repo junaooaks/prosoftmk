@@ -76,11 +76,14 @@ class IndexController extends AbstractActionController {
             if ($form->isValid()) {
 
                 $cpfCnpj = ($form->getData()['cpfCnpj']);
-
+                
+                
+                
+                
                 //limpar caracteres
-                $cpfCnpj = str_replace('.', '', $cpfCnpj);
-                $cpfCnpj = str_replace('/', '', $cpfCnpj);
-                $cpfCnpj = str_replace('-', '', $cpfCnpj);
+//                $cpfCnpj = str_replace('.', '', $cpfCnpj);
+//                $cpfCnpj = str_replace('/', '', $cpfCnpj);
+//                $cpfCnpj = str_replace('-', '', $cpfCnpj);
 
                 $j = 0;
 
@@ -90,22 +93,23 @@ class IndexController extends AbstractActionController {
                         $j++;
                     }
                 }
-
+                
                 if (count($num) == 14) {
                     //validar cnpj
-                    $validator = new Cnpj();
-                    $isValid = $validator->isValid($num);
+                    $validator = new Cnpj(array('valid_if_empty' => false));
+                    $isValid = $validator->isValid($cpfCnpj);
                 } 
                 if (count($num) == 11) {
                     //validar cpf
-                    $validator = new Cpf();
-                    $isValid = $validator->isValid($num);
+                    $validator = new Cpf(array('valid_if_empty' => false));
+                    $isValid = $validator->isValid($cpfCnpj);
                 }
-
+                
+                
                 //inserir o cpfCnpj no array
-                $form->getData()['cpfCnpj']= $cpfCnpj;
+                $form->getData()['cpfCnpj']= $isValid;
 
-                print_r($form->getData());
+                print_r($isValid);
                 die();
                 
                 //executar a insert

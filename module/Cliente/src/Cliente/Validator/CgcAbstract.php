@@ -43,6 +43,7 @@ abstract class CgcAbstract extends AbstractValidator {
      */
     protected $modifiers = array();
     protected $validIfEmpty = true;
+    
     public function __construct($options = null) {
         parent::__construct($options);
         if (array_key_exists('valid_if_empty', $options))
