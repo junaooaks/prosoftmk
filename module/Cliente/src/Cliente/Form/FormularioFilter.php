@@ -24,5 +24,26 @@ class FormularioFilter extends InputFilter {
                 )
             )
         ));
+        
+        
+        $this->add(array(
+            'name'=>'cpfcnpj',
+            'required'=>true,
+            'filters'=>array(
+                array('name'=>'StripTags'),
+                array('name'=>'StringTrim'),
+                array('name' => 'StringToUpper'),
+            ),
+            'validators'=>array(
+                array(
+                    'name'=>'NotEmpty',
+                    'options'=>array(
+                        'messages'=>array('isEmpty'=>'Nome nao pode estar em branco'),
+                    )
+                )
+            )
+        ));
+        
+        
     }
 }

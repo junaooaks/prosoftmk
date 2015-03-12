@@ -7,9 +7,7 @@ use Zend\View\Model\ViewModel,
     Zend\Paginator\Paginator,
     Zend\Paginator\Adapter\ArrayAdapter;
 use Cliente\Form\Formulario as FrmFormulario,
-    Cliente\Form\Pesquisa as FrmPesquisa,
-    Cliente\Validator\Cnpj,
-    Cliente\Validator\Cpf;
+    Cliente\Form\Pesquisa as FrmPesquisa;
 
 class IndexController extends AbstractActionController {
 
@@ -75,43 +73,6 @@ class IndexController extends AbstractActionController {
             //verificar se o formulario esta valido
             if ($form->isValid()) {
 
-                $cpfCnpj = ($form->getData()['cpfCnpj']);
-                
-                
-                
-                
-                //limpar caracteres
-//                $cpfCnpj = str_replace('.', '', $cpfCnpj);
-//                $cpfCnpj = str_replace('/', '', $cpfCnpj);
-//                $cpfCnpj = str_replace('-', '', $cpfCnpj);
-
-                $j = 0;
-
-                for ($i = 0; $i < (strlen($cpfCnpj)); $i++) {
-                    if (is_numeric($cpfCnpj[$i])) {
-                        $num[$j] = $cpfCnpj[$i];
-                        $j++;
-                    }
-                }
-                
-                if (count($num) == 14) {
-                    //validar cnpj
-                    $validator = new Cnpj(array('valid_if_empty' => false));
-                    $isValid = $validator->isValid($cpfCnpj);
-                } 
-                if (count($num) == 11) {
-                    //validar cpf
-                    $validator = new Cpf(array('valid_if_empty' => false));
-                    $isValid = $validator->isValid($cpfCnpj);
-                }
-                
-                
-                //inserir o cpfCnpj no array
-                $form->getData()['cpfCnpj']= $isValid;
-
-                print_r($isValid);
-                die();
-                
                 //executar a insert
                 $service = $this->getServiceLocator()->get('Cliente\Service\ClienteService');
                 $service->insert($form->getData());
