@@ -3,47 +3,49 @@
 namespace Cliente\Form;
 
 use Zend\InputFilter\InputFilter;
+use Cliente\Validator\CpfCnpj;
 
 class FormularioFilter extends InputFilter {
-    
+
     public function __construct() {
         $this->add(array(
-            'name'=>'nome',
-            'required'=>true,
-            'filters'=>array(
-                array('name'=>'StripTags'),
-                array('name'=>'StringTrim'),
+            'name' => 'nome',
+            'required' => true,
+            'filters' => array(
+                array('name' => 'StripTags'),
+                array('name' => 'StringTrim'),
                 array('name' => 'StringToUpper'),
             ),
-            'validators'=>array(
+            'validators' => array(
                 array(
-                    'name'=>'NotEmpty',
-                    'options'=>array(
-                        'messages'=>array('isEmpty'=>'Nome nao pode estar em branco'),
+                    'name' => 'NotEmpty',
+                    'options' => array(
+                        'messages' => array('isEmpty' => 'Nome nao pode estar em branco'),
                     )
                 )
             )
         ));
-        
-        
+
+
         $this->add(array(
-            'name'=>'cpfcnpj',
-            'required'=>true,
-            'filters'=>array(
-                array('name'=>'StripTags'),
-                array('name'=>'StringTrim'),
+            'name' => 'cpfCnpj',
+            'required' => true,
+            'filters' => array(
+                array('name' => 'StripTags'),
+                array('name' => 'StringTrim'),
                 array('name' => 'StringToUpper'),
             ),
-            'validators'=>array(
+            'validators' => array(
                 array(
-                    'name'=>'NotEmpty',
-                    'options'=>array(
-                        'messages'=>array('isEmpty'=>'Nome nao pode estar em branco'),
+                    'name' => 'CpfCnpj',
+                    'options' => array(
+                        'messages' => array('isEmpty' => 'Cpf ou Cnpj inválido'),
                     )
-                )
+                    )
+                
             )
+            
         ));
-        
-        
     }
+
 }

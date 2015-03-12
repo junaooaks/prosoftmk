@@ -5,6 +5,8 @@ namespace Cliente\Form;
 use Zend\Form\Form;
 use Zend\Form\Element;
 
+use Cliente\Validator\CpfCnpj;
+
 class Formulario extends Form {
 
     public function __construct($name = null, $options = array()) {
@@ -14,7 +16,7 @@ class Formulario extends Form {
         
         //inserir a class de filtrar formulario
         $this->setInputFilter(new FormularioFilter());
-
+        
         $this->add(array(
             'name' => 'id',
             'attributes' => array(
@@ -44,6 +46,7 @@ class Formulario extends Form {
                     'class' => 'campos02',
                     'size' => '20',
         ));
+        
         $rg = new Element\Text('rg');
         $rg->setLabel('Identidade: ')
                 ->setAttributes(array(
