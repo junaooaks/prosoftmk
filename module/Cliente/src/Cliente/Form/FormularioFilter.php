@@ -3,7 +3,6 @@
 namespace Cliente\Form;
 
 use Zend\InputFilter\InputFilter;
-use Cliente\Validator\CpfCnpj;
 
 class FormularioFilter extends InputFilter {
 
@@ -28,7 +27,7 @@ class FormularioFilter extends InputFilter {
 
 
         $this->add(array(
-            'name' => 'cpfCnpj',
+            'name' => 'cpfcnpj',
             'required' => true,
             'filters' => array(
                 array('name' => 'StripTags'),
@@ -37,14 +36,16 @@ class FormularioFilter extends InputFilter {
             ),
             'validators' => array(
                 array(
-                    'name' => 'CpfCnpj',
+                    'name' => 'NotEmpty',
+                    'break_chain_on_failure' => true,
                     'options' => array(
-                        'messages' => array('isEmpty' => 'Cpf ou Cnpj inválido'),
+                        'messages' => array('isEmpty' => 'Campo não pode estar vazio.'),
                     )
-                    )
-                
+                ),
+                array(
+                    'name' => 'Cliente\Validator\CpfCnpj'
+                )
             )
-            
         ));
     }
 

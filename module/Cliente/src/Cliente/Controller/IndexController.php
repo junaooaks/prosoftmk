@@ -6,10 +6,9 @@ use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel,
     Zend\Paginator\Paginator,
     Zend\Paginator\Adapter\ArrayAdapter;
+
 use Cliente\Form\Formulario as FrmFormulario,
-    Cliente\Form\Pesquisa as FrmPesquisa,
-    Cliente\Validator\Cnpj,
-    Cliente\Validator\Cpf;
+    Cliente\Form\Pesquisa as FrmPesquisa;
 
 class IndexController extends AbstractActionController {
 
@@ -66,48 +65,14 @@ class IndexController extends AbstractActionController {
 
         //verificar se foi realizado o request
         if ($request->isPost()) {
-
+            
             //preencher os dados do formulario
             $form->setData($request->getPost());
 
-
-
+            
             //verificar se o formulario esta valido
             if ($form->isValid()) {
-
-                $cpfCnpj = ($form->getData()['cpfCnpj']);
                 
-                //limpar caracteres
-//                $cpfCnpj = str_replace('.', '', $cpfCnpj);
-//                $cpfCnpj = str_replace('/', '', $cpfCnpj);
-//                $cpfCnpj = str_replace('-', '', $cpfCnpj);
-
-//                $j = 0;
-//
-//                for ($i = 0; $i < (strlen($cpfCnpj)); $i++) {
-//                    if (is_numeric($cpfCnpj[$i])) {
-//                        $num[$j] = $cpfCnpj[$i];
-//                        $j++;
-//                    }
-//                }
-//                
-//                if (count($num) == 14) {
-//                    //validar cnpj
-//                    $validator = new Cnpj(array('valid_if_empty' => false));
-//                    $isValid = $validator->isValid($cpfCnpj);
-//                } 
-//                if (count($num) == 11) {
-//                    //validar cpf
-//                    $validator = new Cpf(array('valid_if_empty' => false));
-//                    $isValid = $validator->isValid($cpfCnpj);
-//                }
-//                
-//                
-//                //inserir o cpfCnpj no array
-//                //$form->getData()['cpfCnpj']= $isValid;
-//                if($isValid==true){
-//                print_r($cpfCnpj);
-//                }die();
                 
                 //executar a insert
                 $service = $this->getServiceLocator()->get('Cliente\Service\ClienteService');
@@ -121,6 +86,51 @@ class IndexController extends AbstractActionController {
 
         //exibi o formulario na view
         return new ViewModel(array('form' => $form));
+    }
+
+    public function editAction() {
+        $form = new FrmFormulario();
+
+        //pegar o request do post
+        $request = $this->getRequest();
+
+        //pegar o id que esta retornando
+        $repository = $this->getEm()->getRepository('Cliente\Entity\Cliente');
+
+        //retornar a entidade preenchida
+        $entity = $repository->find($this->params()->fromRoute('id', 0));
+
+        //passar paramentro
+        if ($this->params()->fromRoute('id', 0)){
+            $form->setData($entity->toArray());
+        }
+        if ($request->isPost()) {
+            $form->setData($request->getPost());
+            if ($form->isValid()) {
+
+                $service = $this->getServiceLocator()->get('Cliente\Service\ClienteService');
+
+                $service->update($request->getPost()->toArray());
+
+
+                //retirecionar para a pagina de listar
+                return $this->redirect()->toRoute('cliente', array('controller' => 'Cliente\Controller\Index'));
+            }
+        }
+        return new ViewModel(array('form' => $form));
+    }
+
+    public function deleteAction() {
+        //pegar o servico da categoria
+        $service = $this->getServiceLocator()->get('Cliente\Service\ClienteService');
+        if ($service->delete($this->params()->fromRoute('id', 0)))
+            return $this->redirect()->toRoute('cliente', array('controller' => 'Cliente\Controller\Index'));
+    }
+    protected function getEm() {
+        if (null === $this->em)
+            $this->em = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
+
+        return $this->em;
     }
 
 }

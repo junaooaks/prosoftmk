@@ -8,28 +8,64 @@ use Cliente\Validator\Cnpj,
 
 class CpfCnpj extends AbstractValidator {
 
+    /**
+     * Tamanho Inválido
+     * @var string
+     */
+    const SIZE = 'size';
+
+    /**
+     * Números Expandidos
+     * @var string
+     */
+    const EXPANDED = 'expanded';
+
+    /**
+     * Dígito Verificador
+     * @var string
+     */
+    const DIGIT = 'digit';
+
+    /**
+     * Tamanho do Campo
+     * @var int
+     */
+    protected $size = 0;
+
+    /**
+     * Modelos de Mensagens
+     * @var string
+     */
+    protected $messageTemplates = [
+        self::SIZE => "'%value%' não possui tamanho esperado.",
+        self::EXPANDED => "'%value%' não possui um formato aceitável.",
+        self::DIGIT => "'%value%' não é um documento válido."
+    ];
+
     public function isValid($value) {
 
+        //limpar caracteres
+        $value = str_replace('.', '', $value);
+        $value = str_replace('/', '', $value);
+        $value = str_replace('-', '', $value);
 
-        $j = 0;
-
-        for ($i = 0; $i < (strlen($value)); $i++) {
-            if (is_numeric($value[$i])) {
-                $num[$j] = $value[$i];
-                $j++;
-            }
-        }
-
-        if (count($num) == 14) {
+        if (strlen($value) == 14) {
             //validar cnpj
             $validator = new Cnpj(array('valid_if_empty' => false));
             $isValid = $validator->isValid($value);
-        }
-        if (count($num) == 11) {
+        } else {
             //validar cpf
             $validator = new Cpf(array('valid_if_empty' => false));
             $isValid = $validator->isValid($value);
         }
+
+        if (!$isValid) {
+            foreach ($validator->getMessages() as $key => $value) {
+                $this->error($key, $value);
+            }
+        }
+
+        return $isValid;
     }
 
 }

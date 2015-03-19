@@ -5,8 +5,6 @@ namespace Cliente\Form;
 use Zend\Form\Form;
 use Zend\Form\Element;
 
-use Cliente\Validator\CpfCnpj;
-
 class Formulario extends Form {
 
     public function __construct($name = null, $options = array()) {
@@ -39,7 +37,7 @@ class Formulario extends Form {
                     'size' => '60',
         ));
 
-        $cpfCnpj = new Element\Text('cpfCnpj');
+        $cpfCnpj = new Element\Text('cpfcnpj');
         $cpfCnpj->setLabel('Cpf/Cnpj: ')
                 ->setAttributes(array(
                     'required' => 'true',
@@ -60,13 +58,13 @@ class Formulario extends Form {
                     'size' => '20',
         ));
 
-        $telefoneR = new Element\Text('telefoneR');
+        $telefoneR = new Element\Text('telefoner');
         $telefoneR->setLabel('Tel. Residencial: ')
                 ->setAttributes(array(
                     'class' => 'campos02',
                     'size' => '20',
         ));
-        $telefoneC = new Element\Text('telefoneC');
+        $telefoneC = new Element\Text('telefonec');
         $telefoneC->setLabel('Tel. Comercial: ')
                 ->setAttributes(array(
                     'class' => 'campos02',

@@ -1,6 +1,8 @@
 <?php
 namespace Cliente\Validator;
 
+use Cliente\Validator\CgcAbstract;
+
 class Cpf extends CgcAbstract {
     /**
      * Tamanho do Campo

@@ -4,6 +4,7 @@ namespace Cliente\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Zend\Stdlib\Hydrator;
+use Zend\Stdlib\Hydrator\ClassMethods;
 
 //
 //* @ORM\Table(name="cliente", indexes={@ORM\Index(name="fk_clientes_permissaoSistemica1", columns={"permissaoSistemica_idpermissaoSistemica"})})
@@ -16,6 +17,7 @@ use Zend\Stdlib\Hydrator;
  */
 class Cliente
 {
+    
     
     /**
      * @var integer
@@ -36,7 +38,7 @@ class Cliente
     /**
      * @var string
      *
-     * @ORM\Column(name="cpfCnpj", type="string", length=20, nullable=true)
+     * @ORM\Column(name="cpfcnpj", type="string", length=20, nullable=true)
      */
     private $cpfcnpj;
 
@@ -57,14 +59,14 @@ class Cliente
     /**
      * @var string
      *
-     * @ORM\Column(name="telefoneR", type="string", length=20, nullable=true)
+     * @ORM\Column(name="telefoner", type="string", length=20, nullable=true)
      */
     private $telefoner;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="telefoneC", type="string", length=20, nullable=true)
+     * @ORM\Column(name="telefonec", type="string", length=20, nullable=true)
      */
     private $telefonec;
 
@@ -265,6 +267,13 @@ class Cliente
 //        $this->permissaosistemicapermissaosistemica = $permissaosistemicapermissaosistemica;
 //    }
 
+    public function __toString() {
+        return $this->nome;
+    }
+    
+    public function toArray(){
+        return (new ClassMethods())->extract($this);
+    }
 
 
 

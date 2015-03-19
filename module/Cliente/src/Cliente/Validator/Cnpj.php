@@ -1,10 +1,8 @@
 <?php
 namespace Cliente\Validator;
-/**
- * Description of Cgc
- *
- * @author Luiz Carlos
- */
+
+use Cliente\Validator\CgcAbstract;
+
 class Cnpj extends CgcAbstract {
     /**
      * Tamanho do Campo
