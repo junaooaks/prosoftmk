@@ -9,7 +9,7 @@ class Pesquisa extends Form {
     public function __construct($name = null) {
         parent::__construct('Pesquisa');
         
-        $this->setAttribute('class','form-search','method', 'post' );
+        $this->setAttribute('class','form-horizontal','method', 'post' );
         
         $this->add(array(
             'name'=>'nome',
@@ -29,7 +29,7 @@ class Pesquisa extends Form {
             'type'=>'Zend\Form\Element\Submit',
             'attributes'=>array(
                 'id'=>'pesquisar',
-                'value'=>'...',
+                'value'=>'Busca',
                 'class'=>'btn-success'
             )
         ));

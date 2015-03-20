@@ -26,7 +26,7 @@ class Cliente
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $idclientes;
+    private $id;
 
     /**
      * @var string
@@ -129,8 +129,8 @@ class Cliente
         
     }
     
-    function getIdclientes() {
-        return $this->idclientes;
+    function getId() {
+        return $this->id;
     }
 
     function getNome() {
@@ -181,20 +181,13 @@ class Cliente
         return $this->observacao;
     }
 
-    function getDatacadastro() {
-        return $this->datacadastro;
-    }
-
-    function getDataupdate() {
-        return $this->dataupdate;
-    }
 
 //    function getPermissaosistemicapermissaosistemica() {
 //        return $this->permissaosistemicapermissaosistemica;
 //    }
 
-    function setIdclientes($idclientes) {
-        $this->idclientes = $idclientes;
+    function setId($id) {
+        $this->id = $id;
         return $this;
     }
 

@@ -64,10 +64,10 @@ class Cliente extends \Cliente\Entity\Cliente implements \Doctrine\ORM\Proxy\Pro
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return array('__isInitialized__', '' . "\0" . 'Cliente\\Entity\\Cliente' . "\0" . 'idclientes', '' . "\0" . 'Cliente\\Entity\\Cliente' . "\0" . 'nome', '' . "\0" . 'Cliente\\Entity\\Cliente' . "\0" . 'cpfcnpj', '' . "\0" . 'Cliente\\Entity\\Cliente' . "\0" . 'rg', '' . "\0" . 'Cliente\\Entity\\Cliente' . "\0" . 'ie', '' . "\0" . 'Cliente\\Entity\\Cliente' . "\0" . 'telefoner', '' . "\0" . 'Cliente\\Entity\\Cliente' . "\0" . 'telefonec', '' . "\0" . 'Cliente\\Entity\\Cliente' . "\0" . 'celular1', '' . "\0" . 'Cliente\\Entity\\Cliente' . "\0" . 'celular2', '' . "\0" . 'Cliente\\Entity\\Cliente' . "\0" . 'email', '' . "\0" . 'Cliente\\Entity\\Cliente' . "\0" . 'datanascimento', '' . "\0" . 'Cliente\\Entity\\Cliente' . "\0" . 'estadocivil', '' . "\0" . 'Cliente\\Entity\\Cliente' . "\0" . 'observacao');
+            return array('__isInitialized__', '' . "\0" . 'Cliente\\Entity\\Cliente' . "\0" . 'id', '' . "\0" . 'Cliente\\Entity\\Cliente' . "\0" . 'nome', '' . "\0" . 'Cliente\\Entity\\Cliente' . "\0" . 'cpfcnpj', '' . "\0" . 'Cliente\\Entity\\Cliente' . "\0" . 'rg', '' . "\0" . 'Cliente\\Entity\\Cliente' . "\0" . 'ie', '' . "\0" . 'Cliente\\Entity\\Cliente' . "\0" . 'telefoner', '' . "\0" . 'Cliente\\Entity\\Cliente' . "\0" . 'telefonec', '' . "\0" . 'Cliente\\Entity\\Cliente' . "\0" . 'celular1', '' . "\0" . 'Cliente\\Entity\\Cliente' . "\0" . 'celular2', '' . "\0" . 'Cliente\\Entity\\Cliente' . "\0" . 'email', '' . "\0" . 'Cliente\\Entity\\Cliente' . "\0" . 'datanascimento', '' . "\0" . 'Cliente\\Entity\\Cliente' . "\0" . 'estadocivil', '' . "\0" . 'Cliente\\Entity\\Cliente' . "\0" . 'observacao');
         }
 
-        return array('__isInitialized__', '' . "\0" . 'Cliente\\Entity\\Cliente' . "\0" . 'idclientes', '' . "\0" . 'Cliente\\Entity\\Cliente' . "\0" . 'nome', '' . "\0" . 'Cliente\\Entity\\Cliente' . "\0" . 'cpfcnpj', '' . "\0" . 'Cliente\\Entity\\Cliente' . "\0" . 'rg', '' . "\0" . 'Cliente\\Entity\\Cliente' . "\0" . 'ie', '' . "\0" . 'Cliente\\Entity\\Cliente' . "\0" . 'telefoner', '' . "\0" . 'Cliente\\Entity\\Cliente' . "\0" . 'telefonec', '' . "\0" . 'Cliente\\Entity\\Cliente' . "\0" . 'celular1', '' . "\0" . 'Cliente\\Entity\\Cliente' . "\0" . 'celular2', '' . "\0" . 'Cliente\\Entity\\Cliente' . "\0" . 'email', '' . "\0" . 'Cliente\\Entity\\Cliente' . "\0" . 'datanascimento', '' . "\0" . 'Cliente\\Entity\\Cliente' . "\0" . 'estadocivil', '' . "\0" . 'Cliente\\Entity\\Cliente' . "\0" . 'observacao');
+        return array('__isInitialized__', '' . "\0" . 'Cliente\\Entity\\Cliente' . "\0" . 'id', '' . "\0" . 'Cliente\\Entity\\Cliente' . "\0" . 'nome', '' . "\0" . 'Cliente\\Entity\\Cliente' . "\0" . 'cpfcnpj', '' . "\0" . 'Cliente\\Entity\\Cliente' . "\0" . 'rg', '' . "\0" . 'Cliente\\Entity\\Cliente' . "\0" . 'ie', '' . "\0" . 'Cliente\\Entity\\Cliente' . "\0" . 'telefoner', '' . "\0" . 'Cliente\\Entity\\Cliente' . "\0" . 'telefonec', '' . "\0" . 'Cliente\\Entity\\Cliente' . "\0" . 'celular1', '' . "\0" . 'Cliente\\Entity\\Cliente' . "\0" . 'celular2', '' . "\0" . 'Cliente\\Entity\\Cliente' . "\0" . 'email', '' . "\0" . 'Cliente\\Entity\\Cliente' . "\0" . 'datanascimento', '' . "\0" . 'Cliente\\Entity\\Cliente' . "\0" . 'estadocivil', '' . "\0" . 'Cliente\\Entity\\Cliente' . "\0" . 'observacao');
     }
 
     /**
@@ -176,16 +176,16 @@ class Cliente extends \Cliente\Entity\Cliente implements \Doctrine\ORM\Proxy\Pro
     /**
      * {@inheritDoc}
      */
-    public function getIdclientes()
+    public function getId()
     {
         if ($this->__isInitialized__ === false) {
-            return (int)  parent::getIdclientes();
+            return (int)  parent::getId();
         }
 
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getIdclientes', array());
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getId', array());
 
-        return parent::getIdclientes();
+        return parent::getId();
     }
 
     /**
@@ -323,34 +323,12 @@ class Cliente extends \Cliente\Entity\Cliente implements \Doctrine\ORM\Proxy\Pro
     /**
      * {@inheritDoc}
      */
-    public function getDatacadastro()
+    public function setId($id)
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getDatacadastro', array());
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setId', array($id));
 
-        return parent::getDatacadastro();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getDataupdate()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getDataupdate', array());
-
-        return parent::getDataupdate();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setIdclientes($idclientes)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setIdclientes', array($idclientes));
-
-        return parent::setIdclientes($idclientes);
+        return parent::setId($id);
     }
 
     /**

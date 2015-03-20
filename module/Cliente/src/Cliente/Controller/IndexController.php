@@ -12,6 +12,8 @@ use Cliente\Form\Formulario as FrmFormulario,
 
 class IndexController extends AbstractActionController {
 
+    private $em;
+    
     public function indexAction() {
 
         /*         * ******inserir formulario de pesquisa* */
